@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -60,4 +62,25 @@ fun MainButton(text: String, color: Color = MaterialTheme.colorScheme.primary, o
         
     }
 
+}
+@Composable
+fun Alert(
+    title : String,
+    message :String,
+    confirmText:String,
+    onConfirmClick:()->Unit,
+    onDismissClick: ()->Unit
+){
+
+    AlertDialog(
+        onDismissRequest = onDismissClick,
+        title = { Text(text = title) },
+        text = { Text(text = message)},
+        confirmButton = {
+            Button(onClick = { onConfirmClick() }) {
+                Text(text = confirmText)
+                
+            }
+        }
+    )
 }
