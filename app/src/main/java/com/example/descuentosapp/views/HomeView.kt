@@ -56,7 +56,7 @@ fun ContentHomeView(paddingValues: PaddingValues){
         horizontalAlignment = Alignment.CenterHorizontally
      ) {
          var precio by remember{ mutableStateOf("") }
-         var descuento by remember{ mutableStateOf("") }
+        var descuento by remember{ mutableStateOf("") }
         var precioDescuento by remember{ mutableStateOf(0.0) }
         var totalDescuento by remember{ mutableStateOf(0.0) }
 
@@ -64,16 +64,28 @@ fun ContentHomeView(paddingValues: PaddingValues){
 
         MainTextField(value = precio, onValueChange = {precio=it }, label = "Precio")
         SpaceH()
-        MainTextField(value = descuento, onValueChange = {precio=it }, label = "Descuento")
+        MainTextField(value = descuento, onValueChange = {descuento=it }, label = "Descuento")
         SpaceH(10.dp)
         MainButton(text = "Generar descuento") {
-            
+
+            precioDescuento= calculaPrecio(precio.toDouble(), descuento.toDouble())
+            totalDescuento = calculaDescuento(precio.toDouble(), descuento.toDouble())
+
         }
         SpaceH()
         MainButton(text = "Limpiar", color = Color.Red) {
-            
         }
-
     }
+}
 
+fun calculaPrecio(precio:Double, descuento:Double): Double{
+
+    val res = precio - calculaDescuento(precio,descuento)
+    return  kotlin.math.round(res * 100) / 100.0
+
+}
+
+fun calculaDescuento(precio:Double, descuento:Double): Double{
+    val res = precio * (1-descuento / 100)
+    return  kotlin.math.round(res * 100) / 100.0
 }

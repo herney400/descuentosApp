@@ -24,7 +24,7 @@ fun TwoCards(title1: String, number1: Double, title2: String,number2: Double){
     Row(modifier =Modifier.fillMaxWidth(),
     horizontalArrangement = Arrangement.SpaceEvenly
     ){
-        Maincard(title = title1, number = number2,
+        Maincard(title = title1, number = number1,
             modifier  = Modifier
         .padding(start = 30.dp)
         .weight(1f)
@@ -35,6 +35,7 @@ fun TwoCards(title1: String, number1: Double, title2: String,number2: Double){
                 .padding(end = 30.dp)
                 .weight(1f))
     }
+
 }
 
 @Composable
